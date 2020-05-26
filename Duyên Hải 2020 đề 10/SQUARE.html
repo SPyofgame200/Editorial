@@ -1,1 +1,74 @@
+"use strict"; 
 
+var context;
+var backWidth = 960;
+var backHeight = 640;
+var logging = true;
+var canvas;
+var extraHeight;
+var atlas;
+var logElement;
+var xCanvas;
+var yCanvas;
+var xMouse = 0;
+var yMouse = 0;
+var xMinMouse = 0;
+var yMinMouse = 0;
+var xMaxMouse = 400;
+var yMaxMouse = 400;
+var eyeRight = new Eye();
+var eyeLeft = new Eye();
+
+function getCoords(event) 
+{
+	xMouse = event.clientX;
+	yMouse = event.clientY + window.pageYOffset;
+};
+
+// iPhone touch support
+function getCoordsTouch(event) 
+{
+	var touch = event.touches[0];
+	if (touch)
+	{
+		xMouse = touch.pageX;
+		yMouse = touch.pageY + window.pageYOffset;
+	}
+};
+
+function Eye()
+{
+	this.m_x;
+	this.m_y;
+	// m_xOrig, m_yOrig is center, between min and max pos
+	this.m_xOrig;
+	this.m_yOrig;
+	this.m_xMin;
+	this.m_xMax;
+	this.m_yMin;
+	this.m_yMax;
+	this.m_width;
+	this.m_height;
+	this.m_xAtlas;
+	this.m_yAtlas;
+	this.setSize = function(width, height)
+	{
+		this.m_width = width;
+		this.m_height = height;
+	}
+	this.setAtlas = function(x, y)
+	{
+		this.m_xAtlas = x;
+		this.m_yAtlas = y;
+	}
+	this.setMax = function(x, y)
+	{
+		this.m_xMax = x;
+		this.m_yMax = y;
+	}
+	this.setMin = function(x, y)
+	{
+		this.m_xMin = x;
+		this.m_yMin = y;
+	}
+	this.init = fu
